@@ -17,7 +17,11 @@ form.addEventListener('submit', function(e) {
   .then(function(response) {
     // const pokéResponse = response.data;
     textArea.textContent = ''
-    textArea.textContent = JSON.stringify(response)
+    let pokéname = 'Name: ' + `${JSON.stringify(response.data.name)}`;
+    let pokétype = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
+
+    textArea.textContent = `${pokéname}` + ', ' +`${pokétype}`;
+    // console.log(response.data.name)
 
   })
   .catch(function(error) {
