@@ -2,6 +2,7 @@ const numberInput = document.getElementById('number_input');
 let pokéNumber = numberInput.value;
 const form = document.querySelector('form');
 const textArea = document.getElementById("textArea")
+const image = document.getElementById("frontImage");
 
 numberInput.addEventListener('input', function(e) {
     pokéNumber = e.target.value;
@@ -19,6 +20,7 @@ form.addEventListener('submit', function(e) {
     textArea.textContent = ''
     let pokéname = 'Name: ' + `${JSON.stringify(response.data.name)}`;
     let pokétype = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
+    image.src = response.data.sprites.front_default;
 
     textArea.textContent = `${pokéname}` + ', ' +`${pokétype}`;
     // console.log(response.data.name)
