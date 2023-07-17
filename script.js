@@ -18,11 +18,20 @@ form.addEventListener('submit', function(e) {
   .then(function(response) {
     // const pokéResponse = response.data;
     textArea.textContent = ''
-    let pokéname = 'Name: ' + `${JSON.stringify(response.data.name)}`;
-    let pokétype = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
+    let pokéName = 'Name: ' + `${JSON.stringify(response.data.name)}`;
+    let pokéType = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
+    let pokéHeight = 'Height: ' + `${JSON.stringify((response.data.height))/10}`;
+    let pokéWeight = 'Weight: ' + `${JSON.stringify((response.data.weight))/10}`;
+    let pokéAbilities = 'Abilities: ' + `${JSON.stringify(response.data.abilities)}`;
+    // let pokéAbilities2 = 'Ability 2: ' + `${JSON.stringify(response.data.abilities[1].ability.name)}`;
     image.src = response.data.sprites.front_default;
 
-    textArea.textContent = `${pokéname}` + ', ' +`${pokétype}`;
+    // if (pokéAbilities2 == undefined ){
+    //   textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${pokéAbilities1}`;
+    // }
+    // else{
+      textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${pokéAbilities}`;
+    
     // console.log(response.data.name)
 
   })

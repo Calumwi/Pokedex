@@ -13,20 +13,19 @@
     margin-left: auto;
     margin-right: auto;
     width: 40%;
-    /* height: auto;
-    max-width: 100%; */
+
     
   }
 
 #frontImage {
-    /* bottom: 70%; */
+   
     width: 200px; 
     height: 200px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 15%;
     display: block;
-    /* margin: 0 auto; */
+    
     
   }
 
