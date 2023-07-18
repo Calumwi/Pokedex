@@ -16,23 +16,31 @@ form.addEventListener('submit', function(e) {
 
   axios.get('https://pokeapi.co/api/v2/pokemon/' + pokéNumber)
   .then(function(response) {
-    // const pokéResponse = response.data;
+   
     textArea.textContent = ''
+    let abilitiesArray = []
+    let abilitiesResponse = Object(response.data.abilities)
+    let abilitiesFinal = 'Abilities: ' + `${abilitiesArray[0]}` + `, ${abilitiesArray[1]}`
+
+    for (i = 0; i <=1 ; i++){
+      if (abilitiesResponse[i] != undefined){
+      abilitiesArray.push(`${abilitiesResponse[i].ability.name}`);
+      abilitiesFinal = 'Abilities: ' + `${abilitiesArray[0]}` + `, ${abilitiesArray[1]}`;
+
+      }else{
+      abilitiesArray.push('');
+      abilitiesFinal = 'Abilities: ' + `${abilitiesArray[0]}`;
+    }}
+    
+
     let pokéName = 'Name: ' + `${JSON.stringify(response.data.name)}`;
     let pokéType = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
     let pokéHeight = 'Height: ' + `${JSON.stringify((response.data.height))/10}`;
     let pokéWeight = 'Weight: ' + `${JSON.stringify((response.data.weight))/10}`;
-    let pokéAbilities = 'Abilities: ' + `${JSON.stringify(response.data.abilities)}`;
-    // let pokéAbilities2 = 'Ability 2: ' + `${JSON.stringify(response.data.abilities[1].ability.name)}`;
+  
     image.src = response.data.sprites.front_default;
-
-    // if (pokéAbilities2 == undefined ){
-    //   textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${pokéAbilities1}`;
-    // }
-    // else{
-      textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${pokéAbilities}`;
+    textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${abilitiesFinal}`;
     
-    // console.log(response.data.name)
 
   })
   .catch(function(error) {
@@ -41,8 +49,5 @@ form.addEventListener('submit', function(e) {
   return false;  
 })
 
-// const displayReturn = (response) => {
-//   return response.data
-// }
 
 numberInput.value = '';
