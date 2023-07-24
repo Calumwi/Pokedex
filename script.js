@@ -1,20 +1,27 @@
-const numberInput = document.getElementById('number_input');
-let pokéNumber = numberInput.value;
+const pokémonInput = document.getElementById('pokémon_input');
+let pokéInput = pokémonInput.value;
 const form = document.querySelector('form');
 const textArea = document.getElementById("textArea")
 const image = document.getElementById("frontImage");
 
-numberInput.addEventListener('input', function(e) {
-    pokéNumber = e.target.value;
-  })
+
+pokémonInput.addEventListener('input', function(e) {
+  pokéInput = e.target.value
+
+  if(pokéInput === "Giratina" || pokéInput === "giratina"){
+    pokéInput = '487';
+  }
+
+})
 
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   console.log('Submitted');
 
+ 
 
-  axios.get('https://pokeapi.co/api/v2/pokemon/' + pokéNumber)
+  axios.get('https://pokeapi.co/api/v2/pokemon/' + pokéInput.toLowerCase())
   .then(function(response) {
    
     textArea.textContent = ''
@@ -32,6 +39,7 @@ form.addEventListener('submit', function(e) {
       abilitiesFinal = 'Abilities: ' + `${abilitiesArray[0]}`;
     }}
     
+    
 
     let pokéName = 'Name: ' + `${JSON.stringify(response.data.name)}`;
     let pokéType = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
@@ -40,7 +48,7 @@ form.addEventListener('submit', function(e) {
   
     image.src = response.data.sprites.front_default;
     textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${abilitiesFinal}`;
-    
+    pokéInput.value = ''
 
   })
   .catch(function(error) {
@@ -50,4 +58,5 @@ form.addEventListener('submit', function(e) {
 })
 
 
-numberInput.value = '';
+
+
