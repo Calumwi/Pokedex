@@ -4,6 +4,11 @@ const form = document.querySelector('form');
 const textArea = document.getElementById("textArea")
 const image = document.getElementById("frontImage");
 
+// const imageChange = () => {
+//   image.src = response.data.sprites.front_shiny;
+// }
+
+
 
 pokémonInput.addEventListener('input', function(e) {
   pokéInput = e.target.value
@@ -25,6 +30,14 @@ form.addEventListener('submit', function(e) {
   .then(function(response) {
    
     textArea.textContent = ''
+    image.src = response.data.sprites.front_default;
+    image.onmouseover = () => {
+      image.src = response.data.sprites.front_shiny;
+    }
+    image.onmouseout = () => {
+      image.src = response.data.sprites.front_default;
+    }
+
     let abilitiesArray = []
     let abilitiesResponse = Object(response.data.abilities)
     let abilitiesFinal = 'Abilities: ' + `${abilitiesArray[0]}` + `, ${abilitiesArray[1]}`
@@ -46,7 +59,7 @@ form.addEventListener('submit', function(e) {
     let pokéHeight = 'Height: ' + `${JSON.stringify((response.data.height))/10}`;
     let pokéWeight = 'Weight: ' + `${JSON.stringify((response.data.weight))/10}`;
   
-    image.src = response.data.sprites.front_default;
+    
     textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${abilitiesFinal}`;
     pokéInput.value = ''
 
