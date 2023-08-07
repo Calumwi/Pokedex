@@ -1,17 +1,12 @@
 const pokémonInput = document.getElementById('pokémon_input');
 let pokéInput = pokémonInput.value;
 const form = document.querySelector('form');
-const textArea = document.getElementById("textArea")
+const textArea = document.getElementById("textArea");
 const image = document.getElementById("frontImage");
-
-// const imageChange = () => {
-//   image.src = response.data.sprites.front_shiny;
-// }
-
 
 
 pokémonInput.addEventListener('input', function(e) {
-  pokéInput = e.target.value
+  pokéInput = e.target.value;
 
   if(pokéInput === "Giratina" || pokéInput === "giratina"){
     pokéInput = '487';
@@ -58,18 +53,12 @@ form.addEventListener('submit', function(e) {
     let pokéType = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
     let pokéHeight = 'Height: ' + `${JSON.stringify((response.data.height))/10}`;
     let pokéWeight = 'Weight: ' + `${JSON.stringify((response.data.weight))/10}`;
-  
-    
     textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${abilitiesFinal}`;
     pokéInput.value = ''
-
-  })
+  
   .catch(function(error) {
     console.log(error);
   })
   return false;  
 })
-
-
-
-
+})
