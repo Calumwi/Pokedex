@@ -8,30 +8,36 @@ html{
   height: 100%;
 }
 
-/* .body {
+.body {
   width: 100%;
   height: 100%;
- } */
+ }
+
+ .center {
+  display:block;
+  top: 50%;
+  left:43%;
+  transform: translate(0, -50%);
+  padding: 10px
+ } 
 
 #logo {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 40%;
-
-    
   }
 
+
 #frontImage {  
-  width: 14em; 
+  width: 15em; 
   height: 14em;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 15%;
-  display: block;
-  border-style: solid;
-  
-    
+  /* right: 45%;
+  left: 45%; */
+  top: 75%;
+  /* border-style: solid; */
+  position:absolute;
+  display:inline-block
   }
 
 form{

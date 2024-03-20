@@ -23,7 +23,11 @@ form.addEventListener('submit', function(e) {
 
   axios.get('https://pokeapi.co/api/v2/pokemon/' + pokéInput.toLowerCase())
   .then(function(response) {
-   
+  //   axios.get('https://pokeapi.co/api/v2/type/10/' + pokéInput.toLowerCase())
+  // .then(function(response) {
+
+    
+
     textArea.textContent = ''
     image.src = response.data.sprites.front_default;
     image.onmouseover = () => {
@@ -48,9 +52,10 @@ form.addEventListener('submit', function(e) {
     }}
     
     
-
+    let type1 = (response.data.types[0]);
+    let type2 = (response.data.types[1]);
     let pokéName = 'Name: ' + `${JSON.stringify(response.data.name)}`;
-    let pokéType = 'Type: ' + `${JSON.stringify(response.data.types[0].type.name)}`;
+    let pokéType = 'Type(s): ' + `${JSON.stringify(response.data.types[0].type.name)}`;
     let pokéHeight = 'Height: ' + `${JSON.stringify((response.data.height))/10}`;
     let pokéWeight = 'Weight: ' + `${JSON.stringify((response.data.weight))/10}`;
     textArea.textContent = `${pokéName}` + ', \n'  +`${pokéType}` + ', \n' +`${pokéHeight}` + 'm, \n' +`${pokéWeight}` + 'kg, \n' + `${abilitiesFinal}`;
